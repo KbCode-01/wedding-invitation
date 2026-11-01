@@ -1,11 +1,28 @@
+
 import { useEffect, useRef, useState } from "react";
 import "./WeDoTimeline.css";
 
 const items = [
-  { title: "We Do", subtitle: "The beginning of forever", icon: "rings" },
-  { title: "We Drink", subtitle: "A toast to our love", icon: "drink" },
-  { title: "We Eat", subtitle: "A taste of happiness", icon: "eat" },
-  { title: "We Party", subtitle: "Let's celebrate together", icon: "party" },
+  {
+    title: "We Do",
+    subtitle: "The beginning of forever",
+    icon: "rings",
+  },
+  {
+    title: "We Drink",
+    subtitle: "A toast to our love",
+    icon: "drink",
+  },
+  {
+    title: "We Eat",
+    subtitle: "A taste of happiness",
+    icon: "eat",
+  },
+  {
+    title: "We Party",
+    subtitle: "Let's celebrate together",
+    icon: "party",
+  },
 ];
 
 function Icon({ type }) {
@@ -18,6 +35,7 @@ function Icon({ type }) {
       strokeWidth="2.4"
       strokeLinecap="round"
       strokeLinejoin="round"
+      aria-hidden="true"
     >
       {type === "rings" && (
         <>
@@ -64,129 +82,163 @@ function Icon({ type }) {
 
 export default function WeDoTimeline() {
   const sectionRef = useRef(null);
-  const itemRefs = useRef([]);
-  const [active, setActive] = useState(-1);
+  const [active, setActive] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [visibleItems, setVisibleItems] = useState([]);
 
   useEffect(() => {
-    let ticking = false;
+    const section = sectionRef.current;
+    if (!section) return;
 
-    const update = () => {
-      if (!sectionRef.current) return;
+    const rows = Array.from(
+      section.querySelectorAll(".wedo-row")
+    );
 
-      const section = sectionRef.current;
+    // تشخیص کارت فعال هنگام اسکرول
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(
+              entry.target.dataset.index
+            );
+
+            setActive(index);
+
+            setVisibleItems((previous) =>
+              previous.includes(index)
+                ? previous
+                : [...previous, index]
+            );
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0.45,
+        rootMargin: "-10% 0px -10% 0px",
+      }
+    );
+
+    rows.forEach((row) => observer.observe(row));
+
+    // حرکت نرم خط تایم‌لاین
+    let frame = null;
+
+    const updateProgress = () => {
       const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
 
-      const total = rect.height + window.innerHeight;
-      const traveled = window.innerHeight - rect.top;
+      const start = viewportHeight * 0.75;
+      const end = -rect.height + viewportHeight * 0.25;
+      const distance = start - end;
+      const traveled = start - rect.top;
 
-      const amount = Math.max(
+      const value = Math.max(
         0,
-        Math.min(1, traveled / total)
+        Math.min(1, traveled / distance)
       );
 
-      setProgress(amount);
-
-      const center = window.innerHeight * 0.5;
-      let nearest = -1;
-      let distance = Infinity;
-
-      itemRefs.current.forEach((item, index) => {
-        if (!item) return;
-
-        const itemRect = item.getBoundingClientRect();
-        const itemCenter = itemRect.top + itemRect.height / 2;
-        const currentDistance = Math.abs(itemCenter - center);
-
-        if (currentDistance < distance) {
-          distance = currentDistance;
-          nearest = index;
-        }
-      });
-
-      setActive(
-        distance < window.innerHeight * 0.48 ? nearest : -1
-      );
-
-      ticking = false;
+      setProgress(value);
+      frame = null;
     };
 
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(update);
-        ticking = true;
+      if (frame === null) {
+        frame = requestAnimationFrame(updateProgress);
       }
     };
 
-    update();
+    updateProgress();
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
     window.addEventListener("resize", handleScroll);
 
     return () => {
+      observer.disconnect();
+
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
+
+      if (frame !== null) {
+        cancelAnimationFrame(frame);
+      }
     };
   }, []);
 
-  const branchPath =
-  "M50 0 C50 100 15 120 50 230 C85 340 85 360 50 470 C15 580 15 600 50 710 C85 820 85 840 50 950";
   return (
-    <section className="wedo-timeline" ref={sectionRef}>
-      <div className="wedo-heading">
-        <span className="wedo-eyebrow">OUR SPECIAL DAY</span>
+    <section className="wedo-timeline" ref={sectionRef} dir="ltr">
+      {/* عنوان */}
+      <header className="wedo-heading">
+        <span className="wedo-eyebrow">
+          OUR SPECIAL DAY
+        </span>
+
         <h2>And so the celebration begins</h2>
+
         <span className="wedo-heading-flower">✿</span>
+
+        <p className="wedo-intro">
+          A beautiful day, filled with unforgettable moments
+        </p>
+      </header>
+
+      {/* مسیر متحرک */}
+      <div className="wedo-track">
+        <div className="wedo-track-base" />
+
+        <div
+          className="wedo-track-progress"
+          style={{ height: `${progress * 100}%` }}
+        />
       </div>
 
-      <div className="wedo-branch-wrap">
-        <svg
-          className="wedo-branch"
-          viewBox="0 0 100 950"
-          preserveAspectRatio="none"
-        >
-          <path className="branch-base" d={branchPath} />
-
-          <path
-            className="branch-progress"
-            d={branchPath}
-            pathLength="1"
-            strokeDasharray="1"
-            strokeDashoffset={1 - progress}
-          />
-        </svg>
-      </div>
-
+      {/* رویدادها */}
       <div className="wedo-items">
         {items.map((item, index) => (
-          <div
+          <article
             key={item.title}
-            ref={(el) => (itemRefs.current[index] = el)}
-            className={`wedo-row row-${index + 1} ${
-              active === index ? "active" : ""
-            } ${active > index ? "completed" : ""}`}
+            data-index={index}
+            className={[
+              "wedo-row",
+              index % 2 === 0 ? "wedo-left" : "wedo-right",
+              active === index ? "active" : "",
+              visibleItems.includes(index) ? "revealed" : "",
+            ].join(" ")}
           >
+            <span className="wedo-node">
+              <span className="wedo-node-inner" />
+            </span>
+
             <div className="wedo-content">
+              <span className="wedo-number">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+
               <div className="wedo-icon-frame">
                 <span className="wedo-icon-glow" />
                 <Icon type={item.icon} />
               </div>
 
               <h3>{item.title}</h3>
+
               <p>{item.subtitle}</p>
-              <span className="wedo-number">
-                {String(index + 1).padStart(2, "0")}
-              </span>
+
+              <span className="wedo-card-decoration">✧</span>
             </div>
-          </div>
+          </article>
         ))}
       </div>
 
-      <div className="wedo-bottom">
+      {/* پایان */}
+      <footer className="wedo-bottom">
         <span>WITH LOVE</span>
         <span className="wedo-bottom-heart">♡</span>
         <span>SASAN & ANAHITA</span>
-      </div>
+      </footer>
     </section>
   );
 }

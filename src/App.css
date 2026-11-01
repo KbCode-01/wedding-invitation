@@ -470,10 +470,17 @@ textarea {
 
 .wave {
   position: absolute;
-  width: 95%;
+  top: 1100px;
   left: 2.5%;
-  top: 1400px;
-  min-height: 650px;
+  width: 95%;
+  min-height: 0;
+  height: auto;
+  z-index: 2;
+}
+
+.wave .wedo-timeline {
+  width: 100%;
+  max-width: 850px;
 }
 
 /* =====================================

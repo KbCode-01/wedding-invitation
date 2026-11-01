@@ -1,65 +1,77 @@
+
 .wedo-timeline {
+  --wedo-rose: #c9828d;
+  --wedo-deep: #a65f70;
+  --wedo-gold: #c5a16b;
+  --wedo-text: #795263;
+
   position: relative;
+  isolation: isolate;
   width: 100%;
   max-width: 850px;
-  min-height: 1250px;
+  min-height: 0;
   margin: 55px auto;
-  padding: 55px 0 35px;
+  padding: 55px 22px 45px;
   overflow: hidden;
-  isolation: isolate;
 
   background:
     radial-gradient(
-      ellipse at 10% 15%,
-      rgba(255, 255, 255, 0.65),
+      circle at 10% 15%,
+      rgba(255, 255, 255, 0.75),
       transparent 35%
     ),
     radial-gradient(
-      ellipse at 90% 45%,
-      rgba(255, 255, 255, 0.45),
+      circle at 90% 70%,
+      rgba(255, 255, 255, 0.55),
       transparent 35%
     ),
-    linear-gradient(145deg, #f9dce9 0%, #f6c8dc 45%, #f8dce8 100%);
+    linear-gradient(
+      145deg,
+      #fff5f3 0%,
+      #f8e4e8 48%,
+      #f3d9e1 100%
+    );
 
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: 28px;
+
   box-shadow:
     0 20px 60px rgba(142, 75, 104, 0.12),
-    inset 0 0 40px rgba(255, 255, 255, 0.28);
+    inset 0 0 35px rgba(255, 255, 255, 0.35);
 }
 
-/* Decorative background */
+/* تزئینات پس زمینه */
 
 .wedo-timeline::before,
 .wedo-timeline::after {
   content: "✿";
   position: absolute;
-  z-index: 0;
-  color: rgba(183, 135, 95, 0.16);
-  font-size: 190px;
+  z-index: -1;
+  color: rgba(183, 135, 95, 0.12);
   pointer-events: none;
+  font-size: 180px;
 }
 
 .wedo-timeline::before {
-  top: 170px;
-  left: -70px;
+  top: 250px;
+  left: -75px;
   transform: rotate(-25deg);
 }
 
 .wedo-timeline::after {
-  right: -65px;
-  bottom: 100px;
+  bottom: 150px;
+  right: -70px;
   transform: rotate(25deg);
 }
 
-/* Heading */
+/* عنوان */
 
 .wedo-heading {
   position: relative;
   z-index: 3;
   text-align: center;
-  padding: 0 18px;
-  margin-bottom: 30px;
+  margin-bottom: 65px;
+  padding: 0 10px;
 }
 
 .wedo-eyebrow {
@@ -73,80 +85,156 @@
 
 .wedo-heading h2 {
   margin: 0;
-  color: #795263;
+  color: var(--wedo-text);
   font-family: Georgia, serif;
   font-size: clamp(23px, 4vw, 34px);
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .wedo-heading-flower {
   display: block;
-  color: #bd9660;
-  font-size: 25px;
+  color: var(--wedo-gold);
+  font-size: 27px;
   margin-top: 12px;
 }
 
-/* Curved branch */
-
-.wedo-branch-wrap {
-  position: absolute;
-  inset: 170px 0 260px;
-  z-index: 1;
-  pointer-events: none;
+.wedo-intro {
+  color: #a17c83;
+  font-size: 12px;
+  margin-top: 10px;
+  line-height: 1.8;
 }
 
-.wedo-branch {
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.branch-base,
-.branch-progress {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
-}
-
-.branch-base {
-  stroke: rgba(177, 133, 83, 0.27);
-  stroke-width: 3;
-  stroke-dasharray: 5 8;
-}
-
-.branch-progress {
-  stroke: #bd945b;
-  stroke-width: 4;
-  filter: drop-shadow(0 0 5px rgba(190, 151, 93, 0.5));
-  transition: stroke-dashoffset 0.18s ease;
-}
-
-/* Timeline rows */
+/* مسیر مرکزی */
 
 .wedo-items {
   position: relative;
-  z-index: 2;
-  height: 950px;
-  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 55px;
+  width: 100%;
+  padding: 10px 0;
 }
 
-.wedo-row {
+.wedo-track {
   position: absolute;
-  width: 43%;
-  height: 205px;
+  z-index: 0;
+  top: 260px;
+  bottom: 145px;
+  left: 50%;
+  width: 3px;
+  transform: translateX(-50%);
+  border-radius: 20px;
+  background: rgba(189, 148, 91, 0.2);
+  pointer-events: none;
+}
+
+.wedo-track-base {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(166, 95, 112, 0.3) 0,
+    rgba(166, 95, 112, 0.3) 5px,
+    transparent 5px,
+    transparent 12px
+  );
+  border-radius: 20px;
+}
+
+.wedo-track-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(
+    to bottom,
+    #d6b477,
+    #c9828d,
+    #a65f70
+  );
+  box-shadow: 0 0 12px rgba(201, 130, 141, 0.4);
+  transition: height 0.18s linear;
+}
+
+/* ردیف هر رویداد */
+
+.wedo-row {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  width: 100%;
+  min-height: 205px;
+  opacity: 0;
+  transform: translateY(35px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wedo-row.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* جای کارت ها */
+
+.wedo-left .wedo-content {
+  grid-column: 1;
+  margin-right: 24px;
+}
+
+.wedo-right .wedo-content {
+  grid-column: 2;
+  margin-left: 24px;
+}
+
+/* نقطه مسیر */
+
+.wedo-node {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 50%;
+  width: 19px;
+  height: 19px;
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0.58;
-  transform: scale(0.92);
-  transition:
-    opacity 0.7s ease,
-    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
-    filter 0.7s ease;
+  border-radius: 50%;
+  background: #fff8f5;
+  border: 2px solid #c5a16b;
+  transform: translate(-50%, -50%);
+  transition: all 0.6s ease;
 }
+
+.wedo-node-inner {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--wedo-rose);
+  transition: all 0.6s ease;
+}
+
+.wedo-row.active .wedo-node {
+  width: 27px;
+  height: 27px;
+  border-color: var(--wedo-deep);
+  box-shadow: 0 0 0 7px rgba(201, 130, 141, 0.13);
+}
+
+.wedo-row.active .wedo-node-inner {
+  width: 11px;
+  height: 11px;
+  background: var(--wedo-deep);
+}
+
+/* کارت */
 
 .wedo-content {
   position: relative;
@@ -155,109 +243,95 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 185px;
-  padding: 17px 10px;
+  min-height: 195px;
+  padding: 22px 12px;
   text-align: center;
 
-  background: rgba(255, 255, 255, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.48);
+  border: 1px solid rgba(255, 255, 255, 0.85);
   border-radius: 24px;
 
   box-shadow:
-    0 12px 30px rgba(126, 77, 94, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    0 12px 30px rgba(126, 77, 94, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 
   transition:
-    background 0.6s ease,
-    border-color 0.6s ease,
-    box-shadow 0.6s ease;
+    background 0.7s ease,
+    border-color 0.7s ease,
+    box-shadow 0.7s ease,
+    transform 0.7s ease;
 }
 
-/* Icon */
+.wedo-row.active .wedo-content {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(190, 151, 93, 0.65);
+  box-shadow:
+    0 18px 38px rgba(139, 83, 108, 0.13),
+    0 0 25px rgba(204, 165, 112, 0.12);
+  transform: translateY(-5px);
+}
+
+/* شماره */
+
+.wedo-number {
+  position: absolute;
+  top: 13px;
+  right: 15px;
+  color: rgba(166, 127, 83, 0.55);
+  font-family: Georgia, serif;
+  font-size: 12px;
+}
+
+/* آیکون */
 
 .wedo-icon-frame {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 85px;
-  height: 85px;
-  margin-bottom: 8px;
+  width: 78px;
+  height: 78px;
+  margin-bottom: 12px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.48);
-  border: 1px solid rgba(189, 148, 91, 0.3);
+
   color: #a9865b;
-  transition: all 0.7s ease;
+  background: linear-gradient(
+    145deg,
+    #fffaf6,
+    #f6e4e2
+  );
+
+  border: 1px solid rgba(189, 148, 91, 0.35);
+
+  transition:
+    transform 0.7s ease,
+    color 0.7s ease,
+    box-shadow 0.7s ease;
 }
 
 .wedo-icon-glow {
   position: absolute;
   inset: -7px;
-  border: 1px solid rgba(189, 148, 91, 0.2);
+  border: 1px solid rgba(189, 148, 91, 0.22);
   border-radius: 50%;
   transition: all 0.7s ease;
 }
 
 .wedo-icon {
   display: block;
-  width: 58px;
-  height: 58px;
+  width: 52px;
+  height: 52px;
   overflow: visible;
   transition: transform 0.7s ease;
 }
 
-.wedo-content h3 {
-  color: #8f6c52;
-  font-family: Georgia, serif;
-  font-size: clamp(23px, 4vw, 31px);
-  font-weight: 400;
-  line-height: 1.2;
-  margin: 4px 0 5px;
-  transition: color 0.6s ease;
-}
-
-.wedo-content p {
-  color: #987b7e;
-  font-size: 11px;
-  letter-spacing: 0.5px;
-  margin: 0;
-  transition: color 0.6s ease;
-}
-
-.wedo-number {
-  position: absolute;
-  top: 12px;
-  right: 15px;
-  color: rgba(166, 127, 83, 0.5);
-  font-family: Georgia, serif;
-  font-size: 12px;
-}
-
-/* Active state */
-
-.wedo-row.active {
-  opacity: 1;
-  transform: scale(1.07);
-  filter: drop-shadow(0 12px 18px rgba(139, 83, 108, 0.13));
-}
-
-.wedo-row.active .wedo-content {
-  background: rgba(255, 255, 255, 0.72);
-  border-color: rgba(190, 151, 93, 0.65);
-  box-shadow:
-    0 18px 38px rgba(139, 83, 108, 0.14),
-    0 0 25px rgba(204, 165, 112, 0.12),
-    inset 0 1px 0 white;
-}
-
 .wedo-row.active .wedo-icon-frame {
-  background: linear-gradient(145deg, #fff9f0, #f4dfc5);
-  border-color: #c29b64;
   color: #a77c42;
-  box-shadow: 0 0 25px rgba(190, 151, 93, 0.22);
+  box-shadow: 0 0 25px rgba(190, 151, 93, 0.24);
+  transform: scale(1.06);
 }
 
 .wedo-row.active .wedo-icon-glow {
@@ -266,50 +340,42 @@
 }
 
 .wedo-row.active .wedo-icon {
-  transform: scale(1.08) rotate(-4deg);
+  transform: rotate(-5deg);
 }
 
-.wedo-row.active h3 {
+/* نوشته کارت */
+
+.wedo-content h3 {
+  color: #8f6c52;
+  font-family: Georgia, serif;
+  font-size: clamp(22px, 3vw, 29px);
+  font-weight: 400;
+  line-height: 1.3;
+  margin: 0 0 7px;
+  transition: color 0.6s ease;
+}
+
+.wedo-content p {
+  color: #987b7e;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.wedo-row.active .wedo-content h3 {
   color: #9b7040;
 }
 
-.wedo-row.active p {
-  color: #8b6670;
+.wedo-card-decoration {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  color: rgba(189, 148, 91, 0.55);
+  font-size: 15px;
 }
 
-/* Completed state */
-
-.wedo-row.completed {
-  opacity: 0.85;
-}
-
-.wedo-row.completed .wedo-icon-frame {
-  color: #b18b56;
-}
-
-/* Positioning */
-
-.row-1 {
-  top: 0;
-  left: 2%;
-}
-
-.row-2 {
-  top: 245px;
-  right: 2%;
-}
-
-.row-3 {
-  top: 490px;
-  left: 2%;
-}
-
-.row-4 {
-  top: 735px;
-  right: 2%;
-}
-
-/* Bottom signature */
+/* امضای پایانی */
 
 .wedo-bottom {
   position: relative;
@@ -318,7 +384,7 @@
   justify-content: center;
   align-items: center;
   gap: 12px;
-  margin-top: 10px;
+  margin-top: 65px;
   color: #a17b59;
   font-family: Georgia, serif;
   font-size: 10px;
@@ -326,62 +392,73 @@
 }
 
 .wedo-bottom-heart {
-  font-size: 21px;
-  color: #b9848e;
+  font-size: 22px;
+  color: var(--wedo-rose);
 }
 
-/* Mobile */
+/* موبایل */
 
 @media (max-width: 600px) {
   .wedo-timeline {
-    min-height: 1120px;
-    margin: 35px auto;
-    padding-top: 42px;
+    margin: 30px auto;
+    padding: 42px 14px 35px;
     border-radius: 20px;
   }
 
   .wedo-heading {
-    margin-bottom: 25px;
+    margin-bottom: 45px;
   }
 
   .wedo-heading h2 {
     font-size: 23px;
   }
 
-  .wedo-branch-wrap {
-    top: 150px;
-    bottom: 190px;
+  .wedo-intro {
+    font-size: 11px;
   }
 
   .wedo-items {
-    height: 880px;
-    margin-top: 5px;
+    gap: 30px;
+    padding: 5px 0;
+  }
+
+  .wedo-track {
+    left: 50%;
+    top: 230px;
+    bottom: 115px;
   }
 
   .wedo-row {
-    width: 47%;
-    height: 185px;
+    min-height: 175px;
+  }
+
+  .wedo-left .wedo-content {
+    margin-right: 15px;
+  }
+
+  .wedo-right .wedo-content {
+    margin-left: 15px;
   }
 
   .wedo-content {
     min-height: 165px;
-    padding: 12px 5px;
+    padding: 17px 5px;
     border-radius: 18px;
   }
 
   .wedo-icon-frame {
-    width: 67px;
-    height: 67px;
-    margin-bottom: 7px;
+    width: 62px;
+    height: 62px;
+    margin-bottom: 10px;
   }
 
   .wedo-icon {
-    width: 46px;
-    height: 46px;
+    width: 42px;
+    height: 42px;
   }
 
   .wedo-content h3 {
-    font-size: 23px;
+    font-size: 21px;
   }
 
   .wedo-content p {
@@ -395,45 +472,67 @@
     font-size: 10px;
   }
 
-  .row-1 {
-    top: 0;
-    left: 1%;
+  .wedo-node {
+    width: 16px;
+    height: 16px;
   }
 
-  .row-2 {
-    top: 225px;
-    right: 1%;
-  }
-
-  .row-3 {
-    top: 450px;
-    left: 1%;
-  }
-
-  .row-4 {
-    top: 675px;
-    right: 1%;
+  .wedo-row.active .wedo-node {
+    width: 23px;
+    height: 23px;
   }
 
   .wedo-bottom {
-    margin-top: 5px;
+    margin-top: 45px;
     font-size: 8px;
     letter-spacing: 2px;
-  }
-
-  .wedo-timeline::before,
-  .wedo-timeline::after {
-    font-size: 120px;
+    gap: 8px;
   }
 }
 
-/* Reduced motion accessibility */
+/* موبایل خیلی کوچک */
+
+@media (max-width: 380px) {
+  .wedo-timeline {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .wedo-left .wedo-content {
+    margin-right: 11px;
+  }
+
+  .wedo-right .wedo-content {
+    margin-left: 11px;
+  }
+
+  .wedo-content {
+    min-height: 155px;
+  }
+
+  .wedo-content h3 {
+    font-size: 19px;
+  }
+
+  .wedo-content p {
+    font-size: 8px;
+  }
+}
+
+/* دسترسی‌پذیری */
 
 @media (prefers-reduced-motion: reduce) {
   .wedo-row,
   .wedo-content,
   .wedo-icon,
-  .branch-progress {
+  .wedo-icon-frame,
+  .wedo-node,
+  .wedo-track-progress {
     transition: none !important;
+  }
+
+  .wedo-row {
+    opacity: 1;
+    transform: none;
   }
 }

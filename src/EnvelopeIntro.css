@@ -1,0 +1,242 @@
+
+/* ================================
+   FULLSCREEN WEDDING VIDEO INTRO
+================================ */
+
+.video-intro {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  z-index: 99999;
+  background: #000;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 900ms ease,
+    visibility 900ms ease;
+}
+
+/* محو شدن ویدیو */
+.video-intro.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* خود ویدیو */
+.intro-video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  object-fit: cover;
+  object-position: center center;
+  background: #000;
+}
+
+/* ================================
+   MUSIC QUESTION OVERLAY
+================================ */
+
+.music-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(25, 10, 18, 0.48);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+/* پنجره انتخاب موسیقی */
+.music-modal {
+  position: relative;
+  width: min(420px, 100%);
+  padding: 32px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 24px;
+  background: rgba(255, 247, 248, 0.94);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  direction: rtl;
+  animation: musicModalAppear 500ms ease both;
+}
+
+.music-modal h2 {
+  margin: 0 0 12px;
+  color: #704653;
+  font-size: clamp(20px, 5vw, 27px);
+  line-height: 1.7;
+}
+
+.music-modal p {
+  margin: 0 0 24px;
+  color: #80636b;
+  font-size: 15px;
+  line-height: 2;
+}
+
+/* دکمه‌های موسیقی */
+.music-modal button {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 12px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    background 200ms ease;
+}
+
+.music-modal button:hover {
+  transform: translateY(-2px);
+}
+
+.music-modal button:active {
+  transform: scale(0.98);
+}
+
+.music-modal button:first-of-type {
+  color: #fff;
+  background: #a96e7e;
+  box-shadow: 0 7px 18px rgba(169, 110, 126, 0.25);
+}
+
+.music-modal button:last-of-type {
+  color: #795663;
+  background: #f1e1e5;
+}
+
+/* خطای پخش موسیقی */
+.music-modal .audio-error {
+  margin-top: 14px;
+  color: #b34444;
+  font-size: 13px;
+}
+
+/* ================================
+   MUSIC CONTROL
+================================ */
+
+.music-control {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(169, 110, 126, 0.9);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+}
+
+/* ================================
+   ANIMATIONS
+================================ */
+
+@keyframes musicModalAppear {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+  .video-intro {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .intro-video {
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .music-modal {
+    width: 100%;
+    max-width: 360px;
+    padding: 27px 20px;
+    border-radius: 20px;
+  }
+
+  .music-modal p {
+    font-size: 14px;
+  }
+
+  .music-control {
+    right: 14px;
+    bottom: 14px;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ================================
+   TABLET
+================================ */
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .intro-video {
+    object-fit: contain;
+    background: #000;
+  }
+
+  .music-modal {
+    width: min(400px, 85%);
+  }
+}
+
+/* ================================
+   DESKTOP
+================================ */
+
+@media (min-width: 1025px) {
+  .intro-video {
+    object-fit: contain;
+    background: #000;
+  }
+}
+
+/* کاهش انیمیشن برای تنظیمات دسترس‌پذیری */
+@media (prefers-reduced-motion: reduce) {
+  .video-intro,
+  .music-modal,
+  .music-modal button {
+    animation: none;
+    transition: none;
+  }
+}
