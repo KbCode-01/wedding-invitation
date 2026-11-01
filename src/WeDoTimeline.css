@@ -1,0 +1,439 @@
+.wedo-timeline {
+  position: relative;
+  width: 100%;
+  max-width: 850px;
+  min-height: 1250px;
+  margin: 55px auto;
+  padding: 55px 0 35px;
+  overflow: hidden;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      ellipse at 10% 15%,
+      rgba(255, 255, 255, 0.65),
+      transparent 35%
+    ),
+    radial-gradient(
+      ellipse at 90% 45%,
+      rgba(255, 255, 255, 0.45),
+      transparent 35%
+    ),
+    linear-gradient(145deg, #f9dce9 0%, #f6c8dc 45%, #f8dce8 100%);
+
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 28px;
+  box-shadow:
+    0 20px 60px rgba(142, 75, 104, 0.12),
+    inset 0 0 40px rgba(255, 255, 255, 0.28);
+}
+
+/* Decorative background */
+
+.wedo-timeline::before,
+.wedo-timeline::after {
+  content: "✿";
+  position: absolute;
+  z-index: 0;
+  color: rgba(183, 135, 95, 0.16);
+  font-size: 190px;
+  pointer-events: none;
+}
+
+.wedo-timeline::before {
+  top: 170px;
+  left: -70px;
+  transform: rotate(-25deg);
+}
+
+.wedo-timeline::after {
+  right: -65px;
+  bottom: 100px;
+  transform: rotate(25deg);
+}
+
+/* Heading */
+
+.wedo-heading {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 0 18px;
+  margin-bottom: 30px;
+}
+
+.wedo-eyebrow {
+  display: block;
+  color: #aa8051;
+  font-size: 11px;
+  letter-spacing: 5px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.wedo-heading h2 {
+  margin: 0;
+  color: #795263;
+  font-family: Georgia, serif;
+  font-size: clamp(23px, 4vw, 34px);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.wedo-heading-flower {
+  display: block;
+  color: #bd9660;
+  font-size: 25px;
+  margin-top: 12px;
+}
+
+/* Curved branch */
+
+.wedo-branch-wrap {
+  position: absolute;
+  inset: 170px 0 260px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.wedo-branch {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.branch-base,
+.branch-progress {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.branch-base {
+  stroke: rgba(177, 133, 83, 0.27);
+  stroke-width: 3;
+  stroke-dasharray: 5 8;
+}
+
+.branch-progress {
+  stroke: #bd945b;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 5px rgba(190, 151, 93, 0.5));
+  transition: stroke-dashoffset 0.18s ease;
+}
+
+/* Timeline rows */
+
+.wedo-items {
+  position: relative;
+  z-index: 2;
+  height: 950px;
+  margin-top: 10px;
+}
+
+.wedo-row {
+  position: absolute;
+  width: 43%;
+  height: 205px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.58;
+  transform: scale(0.92);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.7s ease;
+}
+
+.wedo-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 185px;
+  padding: 17px 10px;
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 24px;
+
+  box-shadow:
+    0 12px 30px rgba(126, 77, 94, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transition:
+    background 0.6s ease,
+    border-color 0.6s ease,
+    box-shadow 0.6s ease;
+}
+
+/* Icon */
+
+.wedo-icon-frame {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85px;
+  height: 85px;
+  margin-bottom: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.48);
+  border: 1px solid rgba(189, 148, 91, 0.3);
+  color: #a9865b;
+  transition: all 0.7s ease;
+}
+
+.wedo-icon-glow {
+  position: absolute;
+  inset: -7px;
+  border: 1px solid rgba(189, 148, 91, 0.2);
+  border-radius: 50%;
+  transition: all 0.7s ease;
+}
+
+.wedo-icon {
+  display: block;
+  width: 58px;
+  height: 58px;
+  overflow: visible;
+  transition: transform 0.7s ease;
+}
+
+.wedo-content h3 {
+  color: #8f6c52;
+  font-family: Georgia, serif;
+  font-size: clamp(23px, 4vw, 31px);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 4px 0 5px;
+  transition: color 0.6s ease;
+}
+
+.wedo-content p {
+  color: #987b7e;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  margin: 0;
+  transition: color 0.6s ease;
+}
+
+.wedo-number {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  color: rgba(166, 127, 83, 0.5);
+  font-family: Georgia, serif;
+  font-size: 12px;
+}
+
+/* Active state */
+
+.wedo-row.active {
+  opacity: 1;
+  transform: scale(1.07);
+  filter: drop-shadow(0 12px 18px rgba(139, 83, 108, 0.13));
+}
+
+.wedo-row.active .wedo-content {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(190, 151, 93, 0.65);
+  box-shadow:
+    0 18px 38px rgba(139, 83, 108, 0.14),
+    0 0 25px rgba(204, 165, 112, 0.12),
+    inset 0 1px 0 white;
+}
+
+.wedo-row.active .wedo-icon-frame {
+  background: linear-gradient(145deg, #fff9f0, #f4dfc5);
+  border-color: #c29b64;
+  color: #a77c42;
+  box-shadow: 0 0 25px rgba(190, 151, 93, 0.22);
+}
+
+.wedo-row.active .wedo-icon-glow {
+  inset: -11px;
+  border-color: rgba(189, 148, 91, 0.48);
+}
+
+.wedo-row.active .wedo-icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.wedo-row.active h3 {
+  color: #9b7040;
+}
+
+.wedo-row.active p {
+  color: #8b6670;
+}
+
+/* Completed state */
+
+.wedo-row.completed {
+  opacity: 0.85;
+}
+
+.wedo-row.completed .wedo-icon-frame {
+  color: #b18b56;
+}
+
+/* Positioning */
+
+.row-1 {
+  top: 0;
+  left: 2%;
+}
+
+.row-2 {
+  top: 245px;
+  right: 2%;
+}
+
+.row-3 {
+  top: 490px;
+  left: 2%;
+}
+
+.row-4 {
+  top: 735px;
+  right: 2%;
+}
+
+/* Bottom signature */
+
+.wedo-bottom {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  color: #a17b59;
+  font-family: Georgia, serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+.wedo-bottom-heart {
+  font-size: 21px;
+  color: #b9848e;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .wedo-timeline {
+    min-height: 1120px;
+    margin: 35px auto;
+    padding-top: 42px;
+    border-radius: 20px;
+  }
+
+  .wedo-heading {
+    margin-bottom: 25px;
+  }
+
+  .wedo-heading h2 {
+    font-size: 23px;
+  }
+
+  .wedo-branch-wrap {
+    top: 150px;
+    bottom: 190px;
+  }
+
+  .wedo-items {
+    height: 880px;
+    margin-top: 5px;
+  }
+
+  .wedo-row {
+    width: 47%;
+    height: 185px;
+  }
+
+  .wedo-content {
+    min-height: 165px;
+    padding: 12px 5px;
+    border-radius: 18px;
+  }
+
+  .wedo-icon-frame {
+    width: 67px;
+    height: 67px;
+    margin-bottom: 7px;
+  }
+
+  .wedo-icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .wedo-content h3 {
+    font-size: 23px;
+  }
+
+  .wedo-content p {
+    font-size: 9px;
+    letter-spacing: 0;
+  }
+
+  .wedo-number {
+    top: 9px;
+    right: 10px;
+    font-size: 10px;
+  }
+
+  .row-1 {
+    top: 0;
+    left: 1%;
+  }
+
+  .row-2 {
+    top: 225px;
+    right: 1%;
+  }
+
+  .row-3 {
+    top: 450px;
+    left: 1%;
+  }
+
+  .row-4 {
+    top: 675px;
+    right: 1%;
+  }
+
+  .wedo-bottom {
+    margin-top: 5px;
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+
+  .wedo-timeline::before,
+  .wedo-timeline::after {
+    font-size: 120px;
+  }
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .wedo-row,
+  .wedo-content,
+  .wedo-icon,
+  .branch-progress {
+    transition: none !important;
+  }
+}

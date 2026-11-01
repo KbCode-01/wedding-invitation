@@ -1,0 +1,628 @@
+
+/* =====================================
+   WEDDING COLOR PALETTE
+===================================== */
+
+:root {
+  --wedding-cream: #fff8f5;
+  --wedding-pink: #f8e8e8;
+  --wedding-blush: #e8bfc3;
+  --wedding-rose: #c9828d;
+  --wedding-deep-rose: #a65f70;
+  --wedding-gold: #d6b477;
+  --wedding-text: #59434a;
+  --wedding-white: #ffffff;
+  --wedding-border: rgba(201, 130, 141, 0.35);
+  --wedding-shadow: rgba(166, 95, 112, 0.18);
+}
+
+/* =====================================
+   FONTS
+===================================== */
+
+@font-face {
+  font-family: "font01";
+  src: url("/fonts/fantesy/Ephesis-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "font02";
+  src: url("/fonts/fantesy/Ephesis-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "farsi";
+  src: url("/fonts/farsi.ttf") format("truetype");
+  font-display: swap;
+}
+
+/* =====================================
+   GLOBAL
+===================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Vazirmatn", sans-serif;
+  background: var(--wedding-cream);
+  color: var(--wedding-text);
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.invitation {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  background: var(--wedding-cream);
+}
+
+/* =====================================
+   HERO
+===================================== */
+
+.hero {
+  width: 100%;
+  padding: clamp(45px, 8vw, 100px) 20px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background: var(--wedding-cream);
+}
+
+.eyebrow {
+  font-family: farsi, sans-serif;
+  font-weight: 500;
+  font-size: clamp(14px, 2vw, 20px);
+  letter-spacing: 2px;
+  color: var(--wedding-deep-rose);
+}
+
+.invitation-text {
+  font-size: clamp(22px, 4vw, 34px);
+  margin-top: 15px;
+  color: var(--wedding-deep-rose);
+}
+
+.ornament {
+  font-size: 28px;
+  margin-top: 15px;
+  color: var(--wedding-gold);
+}
+
+.hero > img {
+  width: clamp(100px, 25vw, 160px);
+  height: auto;
+  object-fit: contain;
+  transform: rotate(-20deg);
+  margin: 25px 0;
+}
+
+.name_box {
+  width: 100%;
+  max-width: 1260px;
+  height: auto;
+  min-height: 150px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nameItems {
+  width: 100%;
+  font-size: clamp(30px, 6vw, 65px);
+  font-weight: 800;
+}
+
+.name_box p {
+  font-size: clamp(32px, 7vw, 58px);
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+  padding: 8px;
+  color: var(--wedding-deep-rose);
+}
+
+.name_box h6 {
+  font-family: "Alyamama", serif;
+  font-size: clamp(20px, 4vw, 32px);
+  font-weight: 300;
+  color: var(--wedding-text);
+  margin-top: 8px;
+}
+
+.glow {
+  line-height: 1.2;
+}
+
+/* =====================================
+   COUPLE IMAGE
+===================================== */
+
+.imageBox {
+  width: 100%;
+  min-height: auto;
+  margin-top: clamp(30px, 8vw, 100px);
+  padding: 20px;
+  background: var(--wedding-cream);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageBox img {
+  display: block;
+  width: min(100%, 400px);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  object-fit: cover;
+  border-radius: 25px;
+  border: 3px solid var(--wedding-blush);
+  box-shadow: 0 12px 35px var(--wedding-shadow);
+}
+
+/* =====================================
+   COUNTDOWN
+===================================== */
+
+.timeCounter {
+  position: relative;
+  width: min(400px, calc(100% - 36px));
+  min-height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px auto 0;
+}
+
+.countdown {
+  width: 100%;
+  min-height: 160px;
+  direction: ltr !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(7px, 2vw, 12px);
+  padding: 15px;
+  background: var(--wedding-pink);
+  border: 1px solid var(--wedding-border);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px var(--wedding-shadow);
+}
+
+.count-box {
+  flex: 1;
+  width: 100%;
+  max-width: 110px;
+  min-width: 0;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 17px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  color: var(--wedding-white);
+  font-size: clamp(20px, 5vw, 30px);
+  text-shadow: 1px 2px 3px rgba(80, 35, 45, 0.3);
+}
+
+.count-box strong {
+  font-size: clamp(26px, 6vw, 38px);
+}
+
+.count-box span {
+  font-size: clamp(13px, 3vw, 17px);
+}
+
+.colorful-bg {
+  background: linear-gradient(
+    135deg,
+    var(--wedding-deep-rose),
+    var(--wedding-rose),
+    var(--wedding-gold),
+    var(--wedding-blush)
+  );
+
+  background-size: 300% 300%;
+  animation: liveColor 6s ease infinite;
+  box-shadow: 0 8px 25px var(--wedding-shadow);
+  border-radius: 18px;
+}
+
+@keyframes liveColor {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.timeCounter .img1,
+.timeCounter .img2 {
+  position: absolute;
+  width: clamp(55px, 15vw, 100px);
+  height: auto;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.timeCounter .img1 {
+  left: -5px;
+  top: 90px;
+}
+
+.timeCounter .img2 {
+  right: -5px;
+  top: -5px;
+  transform: rotate(-180deg);
+}
+
+/* =====================================
+   POEM BOX
+===================================== */
+
+.pomeBox {
+  position: relative;
+  width: min(400px, calc(100% - 30px));
+  min-height: 150px;
+  margin: 0 auto 20px;
+  display: grid;
+  place-items: center;
+  background-image: url("/aher.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+/* =====================================
+   DATE BOX
+===================================== */
+
+.dateBox {
+  position: relative;
+  width: min(400px, 100%);
+  min-height: 5000px;
+  display: grid;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    var(--wedding-cream) 0%,
+    var(--wedding-pink) 55%,
+    var(--wedding-cream) 100%
+  );
+  overflow: hidden;
+}
+
+/* =====================================
+   DATE DECORATION
+===================================== */
+
+.dateBox .taj {
+  position: absolute;
+  left: 5%;
+  top: 20px;
+  width: 90%;
+  height: 80px;
+  background: linear-gradient(
+    135deg,
+    var(--wedding-rose),
+    var(--wedding-deep-rose)
+  );
+  border: 1px solid var(--wedding-gold);
+  border-radius: 25px 25px 0 0;
+}
+
+.dateBox .taj .cart1,
+.dateBox .taj .cart2 {
+  position: absolute;
+  top: -10px;
+  width: 20px;
+  height: 30px;
+  background: var(--wedding-gold);
+  border-radius: 5px;
+  border: 2px solid var(--wedding-white);
+}
+
+.dateBox .taj .cart1 {
+  right: 20%;
+}
+
+.dateBox .taj .cart2 {
+  left: 20%;
+}
+
+.dateBox .taj .cart3 {
+  position: absolute;
+  bottom: 20%;
+  right: 0;
+  width: 100%;
+  height: 10px;
+  background: var(--wedding-blush);
+}
+
+/* =====================================
+   DATE TEXT
+===================================== */
+
+.textBox {
+  position: absolute;
+  width: 90%;
+  left: 5%;
+  top: 105px;
+  min-height: 200px;
+  padding: 15px 10px;
+  background: linear-gradient(
+    135deg,
+    var(--wedding-pink),
+    var(--wedding-blush)
+  );
+  border: 1px solid var(--wedding-gold);
+  border-radius: 0 0 25px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 8px 22px var(--wedding-shadow);
+}
+
+.textBox p {
+  font-family: farsi, sans-serif;
+  color: var(--wedding-text);
+  font-size: clamp(17px, 4vw, 28px);
+  line-height: 1.8;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* =====================================
+   CALENDAR
+===================================== */
+
+.calendeBox {
+  position: absolute;
+  width: 90%;
+  left: 5%;
+  top: 400px;
+  min-height: 650px;
+  background: var(--wedding-cream);
+  border: 1px solid var(--wedding-border);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 8px 25px var(--wedding-shadow);
+}
+
+.clbox1 {
+  width: min(200px, 65%);
+  height: auto;
+  object-fit: contain;
+}
+
+.clbox2 {
+  width: min(350px, 100%);
+  height: auto;
+  object-fit: contain;
+}
+
+/* =====================================
+   PHOTO SLIDER
+===================================== */
+
+.slider {
+  position: absolute;
+  top: 1100px;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 10px;
+}
+
+/* =====================================
+   TIMELINE
+===================================== */
+
+.wave {
+  position: absolute;
+  width: 95%;
+  left: 2.5%;
+  top: 1400px;
+  min-height: 650px;
+}
+
+/* =====================================
+   LOCATION
+===================================== */
+
+.location {
+  position: absolute;
+  top: 2800px;
+  width: 100%;
+  max-width: 400px;
+  min-height: 800px;
+  background: var(--wedding-cream);
+  border-radius: 20px;
+}
+
+/* =====================================
+   ATTENDANCE FORM
+===================================== */
+
+.lastpart {
+  position: absolute;
+  top: 3900px;
+  width: 100%;
+  max-width: 400px;
+  min-height: 800px;
+}
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (min-width: 600px) {
+  .dateBox {
+    width: min(600px, 100%);
+  }
+
+  .imageBox img {
+    width: min(75vw, 450px);
+  }
+
+  .timeCounter {
+    width: min(450px, 90%);
+  }
+
+  .calendeBox,
+  .textBox,
+  .dateBox .taj {
+    width: 90%;
+    left: 5%;
+  }
+
+  .location,
+  .lastpart {
+    max-width: 550px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99;
+  }
+}
+
+/* =====================================
+   DESKTOP
+===================================== */
+
+@media (min-width: 900px) {
+  .hero {
+    padding-top: 90px;
+  }
+
+  .imageBox img {
+    width: min(40vw, 500px);
+  }
+
+  .dateBox {
+    width: min(700px, 100%);
+  }
+
+  .timeCounter {
+    width: 450px;
+  }
+
+  .countdown {
+    min-height: 180px;
+  }
+
+  .location,
+  .lastpart {
+    max-width: 650px;
+  }
+}
+
+/* =====================================
+   SMALL MOBILE
+===================================== */
+
+@media (max-width: 380px) {
+  .hero {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .name_box p {
+    font-size: 32px;
+  }
+
+  .name_box h6 {
+    font-size: 19px;
+  }
+
+  .timeCounter {
+    width: calc(100% - 30px);
+  }
+
+  .countdown {
+    min-height: 135px;
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .count-box {
+    min-height: 85px;
+    border-radius: 13px;
+  }
+
+  .count-box strong {
+    font-size: 25px;
+  }
+
+  .count-box span {
+    font-size: 12px;
+  }
+
+  .textBox p {
+    font-size: 17px;
+  }
+}
+
+/* =====================================
+   ACCESSIBILITY
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,93 @@
+
+.photo-slider {
+  position: relative;
+  width: 400px;
+  max-width: 100%;
+  height: 225px;
+  margin: 20px auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.photo-track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 calc(50% - 65px);
+  box-sizing: border-box;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.photo-track::-webkit-scrollbar {
+  display: none;
+}
+
+.photo-item {
+  flex: 0 0 130px;
+  width: 130px;
+  height: 145px;
+  border-radius: 18px;
+  overflow: hidden;
+  opacity: 0.5;
+  transform: scale(0.78);
+  transition:
+    transform 0.45s ease,
+    opacity 0.45s ease,
+    box-shadow 0.45s ease;
+  scroll-snap-align: center;
+  cursor: pointer;
+}
+
+.photo-item.active {
+  opacity: 1;
+  transform: scale(1.35);
+  z-index: 2;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.22);
+}
+
+.photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+.slider-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.slider-btn.prev {
+  left: 7px;
+}
+
+.slider-btn.next {
+  right: 7px;
+}

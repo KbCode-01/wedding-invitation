@@ -1,0 +1,400 @@
+
+/* ================================
+   Attendance Form - Main Section
+================================ */
+
+@font-face {
+    font-family: farsi;
+    src: url(/fonts/farsi.ttf);
+}
+.attendance-section {
+  width: 100%;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
+  box-sizing: border-box;
+  font-family: farsi;
+  font-weight: 500;
+}
+
+/* ================================
+   Glass Card
+================================ */
+
+.attendance-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 42px 32px;
+  text-align: center;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 250, 249, 0.92),
+    rgba(248, 225, 226, 0.78)
+  );
+
+  border: 1px solid rgba(190, 135, 145, 0.3);
+  border-radius: 28px;
+
+  box-shadow:
+    0 18px 50px rgba(139, 85, 94, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ================================
+   Header
+================================ */
+
+.attendance-subtitle {
+  display: block;
+  margin-bottom: 14px;
+
+  color: #b77d83;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 4px;
+
+  direction: ltr;
+}
+
+.attendance-card h2 {
+  margin: 0 0 12px;
+
+  color: #895d65;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+.attendance-description {
+  margin: 0 0 30px;
+
+  color: #a17b7e;
+  font-size: 14px;
+  line-height: 2;
+}
+
+/* ================================
+   Form
+================================ */
+
+.attendance-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+/* ================================
+   Input Fields
+================================ */
+
+.attendance-field {
+  width: 100%;
+  text-align: right;
+}
+
+.attendance-field label {
+  display: block;
+  margin-bottom: 8px;
+
+  color: #895d65;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.attendance-field input {
+  width: 100%;
+  height: 49px;
+  padding: 0 15px;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(183, 125, 131, 0.3);
+  border-radius: 13px;
+
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.65);
+
+  color: #704d53;
+  font-family: inherit;
+  font-size: 14px;
+
+  transition: all 0.25s ease;
+}
+
+.attendance-field input:focus {
+  border-color: #bd858c;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 0 0 3px rgba(189, 133, 140, 0.12);
+}
+
+.attendance-field input::placeholder {
+  color: #c5a5a7;
+}
+
+/* Number Input */
+
+.attendance-field input[type="number"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* ================================
+   Attendance Options
+================================ */
+
+.attendance-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  width: 100%;
+  margin-top: 5px;
+}
+
+.attendance-option {
+  min-height: 82px;
+  padding: 12px 8px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  border: 1px solid rgba(183, 125, 131, 0.25);
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.48);
+
+  color: #946c72;
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+/* Hide Radio Input */
+
+.attendance-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Option Icon */
+
+.option-icon {
+  font-size: 23px;
+  line-height: 1;
+  color: #b77d83;
+  transition: transform 0.25s ease;
+}
+
+/* Hover */
+
+.attendance-option:hover {
+  border-color: rgba(189, 133, 140, 0.7);
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(-2px);
+}
+
+/* Selected */
+
+.attendance-option.selected {
+  border-color: #bd858c;
+
+  background: rgba(226, 184, 187, 0.3);
+
+  box-shadow:
+    0 5px 15px rgba(160, 105, 114, 0.1);
+
+  color: #80545c;
+}
+
+.attendance-option.selected .option-icon {
+  transform: scale(1.12);
+  color: #a96f78;
+}
+
+/* Keyboard Accessibility */
+
+.attendance-option:has(input:focus-visible) {
+  outline: 2px solid #bd858c;
+  outline-offset: 3px;
+}
+
+/* ================================
+   Submit Button
+================================ */
+
+.attendance-submit {
+  width: 100%;
+  min-height: 50px;
+  margin-top: 5px;
+  padding: 12px 20px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: linear-gradient(
+    135deg,
+    #c9959a,
+    #a96f78
+  );
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 20px rgba(169, 111, 120, 0.2);
+
+  transition: all 0.25s ease;
+}
+
+.attendance-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 11px 24px rgba(169, 111, 120, 0.28);
+}
+
+.attendance-submit:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.attendance-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ================================
+   Response Messages
+================================ */
+
+.attendance-message {
+  margin: 5px 0 0;
+  padding: 14px 12px;
+
+  border-radius: 13px;
+
+  font-size: 13px;
+  line-height: 2;
+
+  animation: attendanceMessageIn 0.35s ease;
+}
+
+.attendance-message.success {
+  color: #56866c;
+
+  background: rgba(111, 170, 133, 0.12);
+  border: 1px solid rgba(111, 170, 133, 0.22);
+}
+
+.attendance-message.error {
+  color: #b94f5c;
+
+  background: rgba(220, 100, 115, 0.1);
+  border: 1px solid rgba(220, 100, 115, 0.2);
+}
+
+@keyframes attendanceMessageIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   Footer
+================================ */
+
+.attendance-footer {
+  margin-top: 28px;
+  padding-top: 18px;
+
+  border-top: 1px solid rgba(183, 125, 131, 0.2);
+
+  color: #b18489;
+  font-size: 13px;
+  line-height: 2;
+}
+
+/* ================================
+   Responsive - Mobile
+================================ */
+
+@media (max-width: 480px) {
+  .attendance-section {
+    padding: 55px 15px;
+  }
+
+  .attendance-card {
+    padding: 32px 20px;
+    border-radius: 23px;
+  }
+
+  .attendance-card h2 {
+    font-size: 22px;
+  }
+
+  .attendance-description {
+    font-size: 13px;
+  }
+
+  .attendance-options {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .attendance-option {
+    min-height: 78px;
+    font-size: 11px;
+  }
+}
+
+/* ================================
+   Small Mobile
+================================ */
+
+@media (max-width: 350px) {
+  .attendance-card {
+    padding: 28px 15px;
+  }
+
+  .attendance-card h2 {
+    font-size: 20px;
+  }
+
+  .attendance-option {
+    font-size: 10px;
+  }
+}
