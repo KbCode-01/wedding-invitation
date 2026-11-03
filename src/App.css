@@ -293,12 +293,12 @@ textarea {
 
 .timeCounter .img1 {
   left: -5px;
-  top: 90px;
+  top: 130px;
 }
 
 .timeCounter .img2 {
   right: -5px;
-  top: -5px;
+  top: 20px;
   transform: rotate(-180deg);
 }
 
@@ -326,7 +326,7 @@ textarea {
 .dateBox {
   position: relative;
   width: min(400px, 100%);
-  min-height: 5000px;
+  min-height: 4200px;
   display: grid;
   justify-content: center;
   background: linear-gradient(
@@ -489,7 +489,7 @@ textarea {
 
 .location {
   position: absolute;
-  top: 2800px;
+  top: 2300px;
   width: 100%;
   max-width: 400px;
   min-height: 800px;
@@ -503,7 +503,7 @@ textarea {
 
 .lastpart {
   position: absolute;
-  top: 3900px;
+  top: 3350px;
   width: 100%;
   max-width: 400px;
   min-height: 800px;

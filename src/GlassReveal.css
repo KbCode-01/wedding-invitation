@@ -2,11 +2,12 @@
 .glass-reveal {
   position: relative;
   width: 100%;
+  height: 170px;
   overflow: hidden;
   border-radius: 22px;
   isolation: isolate;
   touch-action: pan-y;
-  height: 170px;
+  background: rgba(235, 231, 235, 0.12);
 }
 
 .glass-content {
@@ -14,6 +15,7 @@
   z-index: 1;
 }
 
+/* لایه بخار */
 .glass-canvas {
   position: absolute;
   inset: 0;
@@ -21,12 +23,17 @@
   width: 100%;
   height: 100%;
   z-index: 3;
-  cursor: pointer;
+  cursor: grab;
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
 }
 
+.glass-canvas:active {
+  cursor: grabbing;
+}
+
+/* ذرات کریستالی */
 .crystal-canvas {
   position: absolute;
   inset: 0;
@@ -36,6 +43,7 @@
   pointer-events: none;
 }
 
+/* راهنمای لمس */
 .glass-hint {
   position: absolute;
   inset: 0;
@@ -59,5 +67,22 @@
 
   50% {
     transform: translate(9px, -7px);
+  }
+}
+
+@media (max-width: 600px) {
+  .glass-reveal {
+    height: 170px;
+    border-radius: 18px;
+  }
+
+  .hand-icon {
+    font-size: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hand-icon {
+    animation: none;
   }
 }
